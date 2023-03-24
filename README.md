@@ -1,4 +1,4 @@
-# React/Redux/Router Starter Project
+# The Dondadas React/Redux/Router Portfolio Application Starter Project
 
 > Provided for the students of the [Bottega Code School](https://bottega.tech/)
 
