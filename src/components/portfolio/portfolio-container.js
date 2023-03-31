@@ -5,7 +5,7 @@ import PortfolioItem from "./portfolio-item";
 export default class App extends React.Component {
     constructor() {
         super();
-        
+       
         this.state = {
             pageTitle: "Welcome to my Dossier-Manifesto portfolio",
             data: [
@@ -17,6 +17,9 @@ export default class App extends React.Component {
                 {title: "NFL"}
             ]
         };
+
+        this.handlePageTitleUpdate = this.handlePageTitleUpdate.bind(this);
+        
     }//State
     //Lifecycyle hooks
     PortfolioItem() {
@@ -27,14 +30,24 @@ export default class App extends React.Component {
             //return <h1 key={index}>{item}</h1>;
         });
     }
+
+    handlePageTitleUpdate() {
+        this.setState({
+            pageTitle: "Some other bullshit"
+        });
+    }
     render() {
         return (
             <div>
                 <h2>{this.state.pageTitle}</h2>
                 
                 {this.PortfolioItem()}
+
+                <hr/>
+
+                <button onClick={this.handlePageTitleUpdate}>Change Title</button>
             </div>
         );
 
-    }
+    };
 }
