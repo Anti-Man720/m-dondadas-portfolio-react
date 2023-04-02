@@ -8,19 +8,30 @@ export default class App extends React.Component {
        
         this.state = {
             pageTitle: "Welcome to my Dossier-Manifesto portfolio",
+            isLoading: false,
             data: [
-                {title: "Marvel"}, 
-                {title: "DC"}, 
-                {title: "Nintendo"}, 
-                {title: "Xbox"}, 
-                {title: "NBA"}, 
-                {title: "NFL"}
+                {title: "Marvel", category: "Comics", image: "https://images-na.ssl-images-amazon.com/images/I/51ZtZ9ZQFJL._SX331_BO1,204,203,200_.jpg"},
+                {title: "DC", category: "Comics", image: "https://images-na.ssl-images-amazon.com/images/I/51ZtZ9ZQFJL._SX331_BO1,204,203,200_.jpg"}, 
+                {title: "Nintendo" , category: "Games", image: "https://images-na.ssl-images-amazon.com/images/I/51ZtZ9ZQFJL._SX331_BO1,204,203,200_.jpg"}, 
+                {title: "Xbox" , category: "Games", image: "https://images-na.ssl-images-amazon.com/images/I/51ZtZ9ZQFJL._SX331_BO1,204,203,200_.jpg"}, 
+                {title: "NBA" , category: "Sports", image: "https://images-na.ssl-images-amazon.com/images/I/51ZtZ9ZQFJL._SX331_BO1,204,203,200_.jpg"}, 
+                {title: "NFL" , category: "Sports", image: "https://images-na.ssl-images-amazon.com/images/I/51ZtZ9ZQFJL._SX331_BO1,204,203,200_.jpg"}
             ]
         };
 
-        this.handlePageTitleUpdate = this.handlePageTitleUpdate.bind(this);
+        this.handleFilter = this.handleFilter.bind(this);
         
-    }//State
+    }
+    handleFilter(filter) {
+        this.setState({
+            data: this.state.data.filter(item => {
+                return item.category === filter;
+            })
+        });
+    
+    };
+
+    //State
     //Lifecycyle hooks
     PortfolioItem() {
         //const data = ["Marvel", "DC", "Nintendo", "Xbox", "NBA", "NFL"];
@@ -29,23 +40,29 @@ export default class App extends React.Component {
             //return <PortfolioItem key={index} item={item} />;
             //return <h1 key={index}>{item}</h1>;
         });
-    }
+    };
 
-    handlePageTitleUpdate() {
-        this.setState({
-            pageTitle: "Some other bullshit"
-        });
-    }
+    
+    
     render() {
+        if (this.state.isLoading) {
+            return <div>Loading...</div>;
+        }
         return (
             <div>
                 <h2>{this.state.pageTitle}</h2>
+
+                <button onClick={() => this.handleFilter("Comics")}>Comics</button>
+                <button onClick={() => this.handleFilter("Games")}>Games</button>
+                <button onClick={() => this.handleFilter("Sports")}>Sports</button>  
+
+
                 
                 {this.PortfolioItem()}
 
-                <hr/>
+                
 
-                <button onClick={this.handlePageTitleUpdate}>Change Title</button>
+                
             </div>
         );
 
