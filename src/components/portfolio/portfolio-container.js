@@ -1,70 +1,99 @@
-import React, {component} from "react";
+import React, { Component } from "react";
+import axios from "axios";
 
 import PortfolioItem from "./portfolio-item";
 
-export default class App extends React.Component {
+
+  export default class PortfolioContainer extends Component {
     constructor() {
         super();
        
         this.state = {
-            pageTitle: "Welcome to my Dossier-Manifesto portfolio",
-            isLoading: false,
-            data: [
-                {title: "Marvel", category: "Comics", image: "https://images-na.ssl-images-amazon.com/images/I/51ZtZ9ZQFJL._SX331_BO1,204,203,200_.jpg"},
-                {title: "DC", category: "Comics", image: "https://images-na.ssl-images-amazon.com/images/I/51ZtZ9ZQFJL._SX331_BO1,204,203,200_.jpg"}, 
-                {title: "Nintendo" , category: "Games", image: "https://images-na.ssl-images-amazon.com/images/I/51ZtZ9ZQFJL._SX331_BO1,204,203,200_.jpg"}, 
-                {title: "Xbox" , category: "Games", image: "https://images-na.ssl-images-amazon.com/images/I/51ZtZ9ZQFJL._SX331_BO1,204,203,200_.jpg"}, 
-                {title: "NBA" , category: "Sports", image: "https://images-na.ssl-images-amazon.com/images/I/51ZtZ9ZQFJL._SX331_BO1,204,203,200_.jpg"}, 
-                {title: "NFL" , category: "Sports", image: "https://images-na.ssl-images-amazon.com/images/I/51ZtZ9ZQFJL._SX331_BO1,204,203,200_.jpg"}
-            ]
+          pageTitle: "Welcome to my Dossier-Manifesto portfolio",
+          isLoading: false,
+          data: []
         };
 
-        this.handleFilter = this.handleFilter.bind(this);
+          this.handleFilter = this.handleFilter.bind(this);
         
-    }
-    handleFilter(filter) {
-        this.setState({
-            data: this.state.data.filter(item => {
-                return item.category === filter;
-            })
-        });
+    } 
     
-    };
-
+    handleFilter(filter) {
+      this.setState({
+        data: this.state.data.filter(item => {
+          return item.category === filter;
+        })
+      });
+    }
+    
+  getPortfolioItems(filter = null) {
+        axios
+          .get("https://mikecarter.devcamp.space/portfolio/portfolio_items")
+          .then(response => {
+            if (filter) {
+              this.setState({
+                data: response.data.portfolio_items.filter(item => {
+                  return item.category === filter;
+                })
+              });
+            } else {
+              this.setState({
+                data: response.data.portfolio_items
+              });
+            }
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      }
+    
+      portfolioItems() {
+        return this.state.data.map(item => {
+          console.log(item)
+          return (
+            <PortfolioItem id={item.id} title={item.name} url={item.url} slug={item.id} key={item.id} />
+              
+          );
+        });
+      }
+            
     //State
     //Lifecycyle hooks
-    PortfolioItem() {
-        //const data = ["Marvel", "DC", "Nintendo", "Xbox", "NBA", "NFL"];
-        return this.state.data.map(item => {
-            return <PortfolioItem title={item.title} url={"onlyfans.com"} />;
-            //return <PortfolioItem key={index} item={item} />;
-            //return <h1 key={index}>{item}</h1>;
-        });
-    };
+    
+    componentDidMount() {
+      this.getPortfolioItems();
+    }
 
-    
-    
     render() {
-        if (this.state.isLoading) {
-            return <div>Loading...</div>;
-        }
+      if (this.state.isLoading) {
+        return <div>Loading...</div>;
+      }
+
+        
+
+        
         return (
-            <div>
-                <h2>{this.state.pageTitle}</h2>
-
-                <button onClick={() => this.handleFilter("Comics")}>Comics</button>
-                <button onClick={() => this.handleFilter("Games")}>Games</button>
-                <button onClick={() => this.handleFilter("Sports")}>Sports</button>  
-
-
-                
-                {this.PortfolioItem()}
-
-                
-
-                
-            </div>
+          <div>
+            <h2>{this.state.pageTitle}</h2>
+  
+            <button onClick={() => this.handleFilter("Comics")}>Comics</button>
+            <button onClick={() => this.handleFilter("Games")}>Games</button>
+            <button onClick={() => this.handleFilter("Sports")}>Sports</button>  
+  
+  
+                  
+            {this.portfolioItems()}
+  
+          </div>
         );
+      }            
+    }
+                  
+  
+      
+  
+         
+            
 
-    };
-}
+    
+    
