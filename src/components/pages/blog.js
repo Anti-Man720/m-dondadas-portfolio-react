@@ -111,6 +111,8 @@ class Blog extends Component {
             </a>
           </div>
         ) : null}
+
+        <div className="content-container">{blogRecords}</div>
       </div>
     );
   }
