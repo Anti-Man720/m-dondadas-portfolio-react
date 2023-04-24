@@ -1,22 +1,35 @@
-/*import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-
-import { Container } from "react-bootstrap";
+import React from "react";
 
 export default function About() {
   return (
     <div>
-      <Container>
-        <h1>About That Life</h1>
-        <div className="ratio ratio-16x9">
+      About
+      <div id="video-wrapper">
+        <div>
           <iframe
-            src="https://www.youtube.com/embed/eiXzHmfKcPs"
-            title="YouTube video"
+            id="video1"
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/qhU0TuszM4Q"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen
           ></iframe>
         </div>
-      </Container>
+        <div>
+          <iframe
+            id="video2"
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/eiXzHmfKcPs"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
     </div>
   );
 }
-*/
