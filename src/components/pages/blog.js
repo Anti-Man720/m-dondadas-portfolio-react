@@ -104,6 +104,7 @@ class Blog extends Component {
         console.log("getBlogItems error", error);
       });
   }
+  //Why doesnt anything work
   componentWillMount() {
     this.getBlogItems();
   }
