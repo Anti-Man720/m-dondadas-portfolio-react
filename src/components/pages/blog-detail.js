@@ -3,7 +3,7 @@ import axios from "axios";
 import ReactHtmlParser from "react-html-parser";
 
 import BlogForm from "../Blog/blog-form";
-import BlogFeaturedImage from "../blog/blog-featured-image";
+import BlogFeaturedImage from "../Blog/blog-featured-image";
 
 export default class BlogDetail extends Component {
   constructor(props) {
