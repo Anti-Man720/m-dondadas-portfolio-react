@@ -2,6 +2,9 @@
   "name": "the-dondada-react-portfolio",
   "version": "1.0.0",
   "description": "Personal portfolio app built in React.",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "preinstall": "npm set audit false",
     "start": "webpack-dev-server --config webpack/dev.config.js --watch",
