@@ -91,7 +91,7 @@ export default class App extends Component {
               loggedInStatus={this.state.loggedInStatus}
               handleSuccessfulLogout={this.handleSuccessfulLogout}
             />
-
+            <h3>Michael 'the beloved' Carter</h3>
             {/* <h2>{this.state.loggedInStatus}</h2> */}
 
             <Switch>
