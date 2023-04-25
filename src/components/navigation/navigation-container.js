@@ -63,7 +63,11 @@ const NavigationComponent = (props) => {
       </div>
 
       <div className="right-side">
-        MIKE CAR<NavLink to="/auth">T</NavLink>ER
+        MIKE CAR
+        <NavLink to="/auth" id="nav-auth">
+          T
+        </NavLink>
+        ER
         {props.loggedInStatus === "LOGGED_IN" ? (
           <a
             onClick={handleSignOut}
