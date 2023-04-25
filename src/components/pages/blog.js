@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
-import BlogItem from "../blog/blog-item";
+import BlogItem from "../Blog/blog-item";
 import BlogModal from "../modals/blog-modal";
 class Blog extends Component {
   constructor() {
